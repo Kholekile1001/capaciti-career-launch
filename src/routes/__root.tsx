@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CapacitiLogo } from "../components/CapacitiLogo";
 import { SidebarNav } from "../components/AppSidebar";
 import { ChatbotWidget } from "../components/ChatbotWidget";
+import { Toaster } from "../components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -192,6 +193,7 @@ function RootComponent() {
         </footer>
 
         <ChatbotWidget />
+        <Toaster />
       </div>
     </QueryClientProvider>
   );
