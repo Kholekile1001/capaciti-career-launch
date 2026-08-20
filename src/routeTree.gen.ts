@@ -10,33 +10,89 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CvBuilderRouteImport } from './routes/cv-builder'
+import { Route as InterviewPrepRouteImport } from './routes/interview-prep'
+import { Route as JobSearchRouteImport } from './routes/job-search'
+import { Route as SkillsAssessmentRouteImport } from './routes/skills-assessment'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CvBuilderRoute = CvBuilderRouteImport.update({
+  id: '/cv-builder',
+  path: '/cv-builder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InterviewPrepRoute = InterviewPrepRouteImport.update({
+  id: '/interview-prep',
+  path: '/interview-prep',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JobSearchRoute = JobSearchRouteImport.update({
+  id: '/job-search',
+  path: '/job-search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SkillsAssessmentRoute = SkillsAssessmentRouteImport.update({
+  id: '/skills-assessment',
+  path: '/skills-assessment',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cv-builder': typeof CvBuilderRoute
+  '/interview-prep': typeof InterviewPrepRoute
+  '/job-search': typeof JobSearchRoute
+  '/skills-assessment': typeof SkillsAssessmentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cv-builder': typeof CvBuilderRoute
+  '/interview-prep': typeof InterviewPrepRoute
+  '/job-search': typeof JobSearchRoute
+  '/skills-assessment': typeof SkillsAssessmentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cv-builder': typeof CvBuilderRoute
+  '/interview-prep': typeof InterviewPrepRoute
+  '/job-search': typeof JobSearchRoute
+  '/skills-assessment': typeof SkillsAssessmentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/cv-builder'
+    | '/interview-prep'
+    | '/job-search'
+    | '/skills-assessment'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/cv-builder'
+    | '/interview-prep'
+    | '/job-search'
+    | '/skills-assessment'
+  id:
+    | '__root__'
+    | '/'
+    | '/cv-builder'
+    | '/interview-prep'
+    | '/job-search'
+    | '/skills-assessment'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CvBuilderRoute: typeof CvBuilderRoute
+  InterviewPrepRoute: typeof InterviewPrepRoute
+  JobSearchRoute: typeof JobSearchRoute
+  SkillsAssessmentRoute: typeof SkillsAssessmentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +104,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cv-builder': {
+      id: '/cv-builder'
+      path: '/cv-builder'
+      fullPath: '/cv-builder'
+      preLoaderRoute: typeof CvBuilderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/interview-prep': {
+      id: '/interview-prep'
+      path: '/interview-prep'
+      fullPath: '/interview-prep'
+      preLoaderRoute: typeof InterviewPrepRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/job-search': {
+      id: '/job-search'
+      path: '/job-search'
+      fullPath: '/job-search'
+      preLoaderRoute: typeof JobSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/skills-assessment': {
+      id: '/skills-assessment'
+      path: '/skills-assessment'
+      fullPath: '/skills-assessment'
+      preLoaderRoute: typeof SkillsAssessmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CvBuilderRoute: CvBuilderRoute,
+  InterviewPrepRoute: InterviewPrepRoute,
+  JobSearchRoute: JobSearchRoute,
+  SkillsAssessmentRoute: SkillsAssessmentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -41,7 +41,7 @@ function SkillsAssessment() {
   const overall = Math.round(
     (Object.values(scores).reduce((a, b) => a + b, 0) / (SKILLS.length * 10)) * 100,
   );
-  const gaps = SKILLS.filter((s) => scores[s.key] <= 5);
+  const gaps = SKILLS.filter((s) => (scores[s.key] ?? 0) <= 5);
 
   return (
     <div className="space-y-6">
@@ -59,17 +59,17 @@ function SkillsAssessment() {
               <div className="flex items-center justify-between text-sm">
                 <span className="font-medium text-foreground">{s.label}</span>
                 <span className="font-display font-semibold text-foreground">
-                  {scores[s.key]}/10
+                  {scores[s.key] ?? 0}/10
                 </span>
               </div>
               <Slider
                 className="mt-3"
-                value={[scores[s.key]]}
+                value={[scores[s.key] ?? 0]}
                 min={1}
                 max={10}
                 step={1}
                 aria-label={s.label}
-                onValueChange={([v]) => setScores((p) => ({ ...p, [s.key]: v }))}
+                onValueChange={(v) => setScores((p) => ({ ...p, [s.key]: v[0] ?? 0 }))}
               />
             </div>
           ))}

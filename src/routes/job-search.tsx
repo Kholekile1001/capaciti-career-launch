@@ -101,15 +101,18 @@ const JOBS = [
   },
 ];
 
-const provinces = ["All provinces", "Gauteng", "Western Cape", "KwaZulu-Natal", "Eastern Cape"];
-const types = ["All types", "Full-time", "Internship", "Learnership", "Graduate"];
-const fields = ["All fields", "IT & Data", "Customer Service", "Marketing", "Finance"];
+const ANY_PROVINCE = "All provinces";
+const ANY_TYPE = "All types";
+const ANY_FIELD = "All fields";
+const provinces = [ANY_PROVINCE, "Gauteng", "Western Cape", "KwaZulu-Natal", "Eastern Cape"];
+const types = [ANY_TYPE, "Full-time", "Internship", "Learnership", "Graduate"];
+const fields = [ANY_FIELD, "IT & Data", "Customer Service", "Marketing", "Finance"];
 
 function JobSearch() {
   const [q, setQ] = useState("");
-  const [province, setProvince] = useState(provinces[0]);
-  const [type, setType] = useState(types[0]);
-  const [field, setField] = useState(fields[0]);
+  const [province, setProvince] = useState(ANY_PROVINCE);
+  const [type, setType] = useState(ANY_TYPE);
+  const [field, setField] = useState(ANY_FIELD);
 
   const results = useMemo(
     () =>
@@ -117,9 +120,9 @@ function JobSearch() {
         const text = `${j.title} ${j.company} ${j.tags.join(" ")}`.toLowerCase();
         return (
           text.includes(q.toLowerCase()) &&
-          (province === provinces[0] || j.province === province) &&
-          (type === types[0] || j.type === type) &&
-          (field === fields[0] || j.field === field)
+          (province === ANY_PROVINCE || j.province === province) &&
+          (type === ANY_TYPE || j.type === type) &&
+          (field === ANY_FIELD || j.field === field)
         );
       }),
     [q, province, type, field],
